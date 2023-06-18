@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    table,
+    th,
+    td {
+        border: 1px solid black;
+        border-collapse: collapse;
+    }
+
+    .btn-set {
+        padding: 2px 4px;
+        background-color: rgb(148, 189, 236);
+        color: white;
+        display: inline-block;
+
+        text-decoration: none;
+        margin: 1px 4px;
+        border-color: 1px solid black;
+    }
+</style>
+
+<body>
+
+    <h2>TR elements define table rows</h2>
+
+    <table style="width:100%">
+        <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+            <th>Address</th>
+            <th>Action</th>
+        </tr>
+        <tr>
+
+            <% for(var i=0; i < datatable.length; i++) { %>
+        <tr>
+            <td>
+                <%= datatable[i].firstName %>
+            </td>
+            <td>
+                <%= datatable[i].lastName %>
+            </td>
+            <td>
+                <%= datatable[i].email %>
+            </td>
+            <td>
+                <%= datatable[i].address %>
+            </td>
+            <td>
+                <a class="btn-set" href="/delete-crud?id=<%=datatable[i].id%>">delete</a>
+                <a class="btn-set" href="/edit-crud?id=<%=datatable[i].id%>">edit</a>
+            </td>
+        </tr>
+        <% } %>
+            </tr>
+    </table>
+
+
+</body>
+
+</html>
