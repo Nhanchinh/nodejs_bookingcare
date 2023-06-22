@@ -28,7 +28,7 @@ let handleLogin = async (req, res) => {
 let handleGetAllUser = async (req, res) => {
 
     let id = await req.query.id;
-    console.log(id)
+
     if (!id) {
         return res.status(500).json(
             {
@@ -40,7 +40,7 @@ let handleGetAllUser = async (req, res) => {
     }
     let users = await userService.getAllUser(id)
 
-    console.log("user>>>>", users)
+
 
     return res.status(200).json(
         {
@@ -72,7 +72,7 @@ let handleCreateNewUser = async (req, res) => {
     //         message: 'pls enter your email'
     //     })
     // }
-    console.log(data.email)
+    console.log(data)
     let message = await userService.createNewUser(data)
     return res.status(200).json(message)
 }
