@@ -1,3 +1,4 @@
+import { reject } from "bcrypt/promises";
 import userService from "../service/userService"
 let handleLogin = async (req, res) => {
     let email = await req.body.email;
@@ -84,10 +85,31 @@ let handleEditUser = async (req, res) => {
 
 }
 
+let getAllCode = async (req,res)=>{
+    try{
+       
+        let data = await userService.getAllcodeService()
+      console.log('>>',req.query.input)
+        return res.status(200).json(data)
+
+
+    }
+    catch(e){
+      console.log(e)
+        return res.status(500).json({
+            errCode:-1,
+            errMess:"server is ....."
+        })
+    }
+}
+
+
+
 module.exports = {
     handleLogin: handleLogin,
     handleGetAllUser: handleGetAllUser,
     handleDeleteUser: handleDeleteUser,
     handleCreateNewUser: handleCreateNewUser,
-    handleEditUser: handleEditUser
+    handleEditUser: handleEditUser,
+    getAllCode:getAllCode
 }

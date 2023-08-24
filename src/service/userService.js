@@ -1,3 +1,4 @@
+// import { Promise } from "sequelize";
 import db from "../models"
 import bcrypt from 'bcryptjs'
 var salt = bcrypt.genSaltSync(10);
@@ -231,12 +232,39 @@ let editUserData = (data) => {
 }
 
 
+let getAllcodeService=()=>{
+return new Promise(async(resolve,reject)=>{
+try{
+    let res={}
+    let allcode = await db.allcode.findAll({
+      
+    })
+    res.errCode=0;
+    res.data=allcode
+    resolve(res)
+
+
+
+}catch(e){
+reject(e)
+}
+
+})
+
+
+
+}
+
+
+
+
 
 module.exports = {
     handleUserLogin: handleUserLogin,
     getAllUser: getAllUser,
     deleteUserBy: deleteUserBy,
     createNewUser: createNewUser,
-    editUserData: editUserData
+    editUserData: editUserData,
+    getAllcodeService:getAllcodeService
 
 }
