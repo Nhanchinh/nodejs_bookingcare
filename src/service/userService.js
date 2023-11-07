@@ -232,16 +232,25 @@ let editUserData = (data) => {
 }
 
 
-let getAllcodeService=()=>{
+let getAllcodeService=(u)=>{
 return new Promise(async(resolve,reject)=>{
 try{
-    let res={}
-    let allcode = await db.allcode.findAll({
-      
-    })
-    res.errCode=0;
-    res.data=allcode
-    resolve(res)
+    if(!u){
+        resolve({
+            errCode:0,
+            errMess:"missing params "
+        })
+    }
+    else{
+        let res={}
+        let allcode = await db.allcode.findAll({
+          where:{type:u}
+        })
+        res.errCode=0;
+        res.data=allcode
+        resolve(res)
+    }
+  
 
 
 
